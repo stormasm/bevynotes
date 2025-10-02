@@ -2,7 +2,7 @@
 
 ### Google Question
 
-- in bevy calls to add_systems update how do the function parameters get injected
+- [in bevy calls to add_systems update how do the function parameters get injected](https://www.google.com/search?q=in+bevy+calls+to+add_systems+Update+how+do+the+function+parameters+get+injected&rlz=1C5OZZY_enUS1141US1141&oq=in+bevy+calls+to+add_systems+Update+how+do+the+function+parameters+get+injected+&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCTM2ODg2ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
 
 In Bevy, when you add a system function to a schedule using add_systems(Update, my_system), the parameters of my_system are automatically "injected" by Bevy's Entity Component System (ECS) framework. This process relies on the SystemParam trait.
 
