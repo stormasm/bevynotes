@@ -31,3 +31,43 @@ Bevy's ECS acts as a dependency injection container. When a system is scheduled 
 The key is that Bevy uses the type of the parameter to determine what to inject. You don't explicitly pass these parameters; Bevy handles the retrieval and provision based on the declared types in your system function's signature.
 
 This allows you to write clean, declarative system functions where you simply specify the data you need, and Bevy handles the underlying mechanics of providing it from the ECS.
+
+---
+
+Bevy employs a powerful mechanism called dependency injection to automatically provide the parameters to functions registered as systems using add_systems(Update, ...). This is achieved through the SystemParam trait.
+
+Here's how it works:
+
+• SystemParam Trait: Bevy defines the SystemParam trait, which various types implement. These types represent different ways to interact with the Bevy ECS (Entity Component System) world, such as:
+	• Query: For accessing entities and their components.
+	• Res and ResMut: For accessing and modifying resources.
+	• Commands: For spawning/despawning entities, adding/removing components, and other deferred world modifications.
+	• EventReader and EventWriter: For sending and receiving events.
+	• Local: For system-local state.
+
+• Function Signature Analysis: When you register a Rust function as a system, Bevy analyzes its function signature. It inspects the types of the parameters in your system function.
+• Automatic Parameter Injection: For each parameter that implements SystemParam, Bevy automatically determines how to acquire the necessary data from the World and inject it into your system function when it's executed. You do not manually pass these arguments; Bevy handles their provision based on their types.
+
+Example:
+```rust
+use bevy::prelude::*;
+
+fn my_system(
+    mut commands: Commands, // Injects a Commands struct
+    query: Query<&Transform, With<Player>>, // Injects a Query for Transforms of Player entities
+    time: Res<Time>, // Injects the Time resource
+) {
+    // ... system logic using injected parameters ...
+}
+
+fn main() {
+    App::new()
+        .add_plugins(DefaultPlugins)
+        .add_systems(Update, my_system) // Bevy handles injecting parameters for my_system
+        .run();
+}
+```
+
+In this example, Bevy automatically provides Commands, a Query to access Transform components of entities with the Player component, and the Time resource to the my_system function without any explicit argument passing during the add_systems call.
+
+AI responses may include mistakes.
