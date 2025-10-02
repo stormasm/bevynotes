@@ -45,7 +45,7 @@ Here's how it works:
 	• EventReader and EventWriter: For sending and receiving events.
 	• Local: For system-local state.
 
-• Function Signature Analysis: When you register a Rust function as a system, Bevy analyzes its function signature. It inspects the types of the parameters in your system function.
+• Function Signature Analysis: When you register a Rust function as a system, Bevy analyzes its function signature. It inspects the types of the parameters in your system function.   
 • Automatic Parameter Injection: For each parameter that implements SystemParam, Bevy automatically determines how to acquire the necessary data from the World and inject it into your system function when it's executed.
 
 `You do not manually pass these arguments; Bevy handles their provision based on their types.`
