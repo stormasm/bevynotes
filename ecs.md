@@ -42,7 +42,7 @@ Here's how it works:
 	• Query: For accessing entities and their components.
 	• Res and ResMut: For accessing and modifying resources.
 	• Commands: For spawning/despawning entities, adding/removing components, and other deferred world modifications.
-	• EventReader and EventWriter: For sending and receiving events.
+	• EventReader and EventWriter: For sending and receiving events.   
 	• Local: For system-local state.
 
 • Function Signature Analysis: When you register a Rust function as a system, Bevy analyzes its function signature. It inspects the types of the parameters in your system function.   
