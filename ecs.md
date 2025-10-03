@@ -1,4 +1,13 @@
 
+- [programming paradigms ecs versus mvc](https://www.google.com/search?q=programming+paradigms+ecs+versus+mvc&rlz=1C5OZZY_enUS1141US1141&oq=programming+paradigms+ecs+versus+mvc&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRiPAjIHCAYQIRiPAtIBCTEyMDQ2ajFqN6gCALACAA&sourceid=chrome&ie=UTF-8)
+
+---
+
+- Entities: Unique identifiers that represent an object in the system (e.g., a player, an enemy, a bullet). They are essentially empty containers for components.
+- Components: Data-only structures that hold specific attributes or properties of an entity (e.g., PositionComponent, HealthComponent, RenderComponent).
+- Systems: Logic that operates on entities that possess specific combinations of components (e.g., a MovementSystem that processes all entities with a PositionComponent and a VelocityComponent).
+
+---
 
 ### Google Question
 
