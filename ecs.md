@@ -1,4 +1,44 @@
 
+### Google: what are bevy ecs commands
+
+Bevy ECS commands are a mechanism for performing structural changes to the Bevy ECS World in a safe and deferred manner. These commands are particularly useful for operations that require mutable access to the World, such as spawning or despawning entities, or adding/removing components and resources.
+
+Here's a breakdown of key aspects:
+
+#### Deferred Execution:
+
+Unlike direct World mutations within systems, commands are not executed immediately. Instead, they are added to a command queue and applied later, typically at the end of a schedule or stage, during the ApplyDeferred system. This deferral is crucial for maintaining performance and avoiding data races when multiple systems are running in parallel.
+
+#### Exclusive World Access:
+
+When commands are finally applied, they execute sequentially, each receiving exclusive mutable access to the World. This ensures that structural changes are performed safely without conflicts.
+
+#### Commands System Parameter:
+
+You interact with commands primarily through the Commands system parameter in your Bevy systems. This parameter provides methods for queuing various commands.
+
+#### Common Command Operations:
+- Spawning Entities: commands.spawn_empty(), commands.spawn(MyBundle::default())
+- Despawning Entities: entity_commands.despawn()
+- Inserting Components/Bundles: entity_commands.insert(MyComponent)
+- Removing Components/Bundles: entity_commands.remove::<MyComponent>()
+- Inserting/Removing Resources: commands.insert_resource(MyResource), commands.remove_resource::<MyResource>()
+
+#### EntityCommands:
+
+When you spawn an entity with commands.spawn(), it returns an EntityCommands struct, which allows you to chain further commands specifically targeting that entity (e.g., adding components).
+
+#### Custom Commands:
+You can define your own custom commands by implementing the Command trait, providing an apply method that takes mutable World access. This allows for highly flexible and reusable abstractions for complex World modifications.
+
+#### Error Handling:
+EntityCommands can return Result types for operations, allowing you to handle potential errors (e.g., trying to modify a despawned entity) either with the default panic handler or a custom one.
+In essence, Bevy commands provide a structured and safe way to modify the ECS World, enabling parallel system execution while ensuring data integrity during structural changes.
+
+
+
+---
+
 - [programming paradigms ecs versus mvc](https://www.google.com/search?q=programming+paradigms+ecs+versus+mvc&rlz=1C5OZZY_enUS1141US1141&oq=programming+paradigms+ecs+versus+mvc&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRiPAjIHCAYQIRiPAtIBCTEyMDQ2ajFqN6gCALACAA&sourceid=chrome&ie=UTF-8)
 
 ---
